@@ -8,16 +8,17 @@ class AddEmployeeScreen extends StatefulWidget {
   final bool isEmpNoEditable;
   final VoidCallback onEmployeeAdded;
   const AddEmployeeScreen({
+    super.key,
     required this.employee,
     this.isEmpNoEditable = true,
     required this.onEmployeeAdded,
   });
 
   @override
-  _AddEmployeeScreenState createState() => _AddEmployeeScreenState();
+  AddEmployeeScreenState createState() => AddEmployeeScreenState();
 }
 
-class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
+class AddEmployeeScreenState extends State<AddEmployeeScreen> {
   final ApiService apiService = ApiService();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -176,8 +177,9 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value?.isEmpty ?? true) return 'Required field';
-                      if (double.tryParse(value!) == null)
+                      if (double.tryParse(value!) == null) {
                         return 'Invalid amount';
+                      }
                       return null;
                     },
                   ),
@@ -231,7 +233,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                             }
                           },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: const Color.fromARGB(255, 41, 77, 107),
                       padding: EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -242,7 +244,10 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                         : Text(
                             'Save Employee',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            ),
                           ),
                   ),
                 ],

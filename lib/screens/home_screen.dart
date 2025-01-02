@@ -4,6 +4,8 @@ import 'package:empsystem/screens/employee_list_screen.dart';
 import 'package:empsystem/models/employee.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -12,13 +14,19 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 2,
-        title: const Text(
-          'Employee Management System',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-            letterSpacing: 0.5,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(width: 8),
+            const Text(
+              'Employee Management System',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 19,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
         ),
         backgroundColor: const Color.fromARGB(255, 70, 104, 121),
       ),
@@ -28,7 +36,7 @@ class HomePage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Theme.of(context).primaryColor.withOpacity(0.05),
+              Theme.of(context).primaryColor.withValues(alpha: 0.05),
               Colors.white,
             ],
             stops: const [0.0, 0.3],
@@ -119,7 +127,7 @@ class HomePage extends StatelessWidget {
 
     return Card(
       elevation: 3,
-      shadowColor: option.color.withOpacity(0.3),
+      shadowColor: option.color.withValues(alpha: 0.05),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         onTap: option.onTap,
@@ -136,7 +144,7 @@ class HomePage extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                option.color.withOpacity(0.9),
+                option.color.withValues(alpha: 0.05),
                 option.color,
               ],
             ),
@@ -167,7 +175,7 @@ class HomePage extends StatelessWidget {
                     Text(
                       option.subtitle,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: 0.05),
                         fontSize: screenSize.width * 0.03,
                         letterSpacing: 0.2,
                       ),

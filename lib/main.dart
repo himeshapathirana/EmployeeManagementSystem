@@ -13,7 +13,6 @@ class EmployeeManagementApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Employee Management',
-      theme: ThemeData(primarySwatch: Colors.blue),
       home: HomePage(),
     );
   }
