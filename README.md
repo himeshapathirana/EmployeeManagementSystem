@@ -36,7 +36,7 @@ Here are some screenshots of the app:
    <img src="images/EMP.jpg" width="100" />
   <img src="images/homepage.jpg" width="100" />
   <img src="images/EmpList.jpg" width="100" />
-  <img src="images/AddEmployee.jpg" width="100" />
+
    <img src="images/EditAndDelete.jpg" width="100" />
    <img src="images/Delete.jpg" width="100" />
   <img src="images/AddEmployeeScreen.jpg" width="100" />
