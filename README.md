@@ -33,14 +33,12 @@ The app is designed to be responsive and user-friendly, with a clean interface a
 Here are some screenshots of the app:
 
 <p align="center">
-   <img src="images/EMP.jpg" width="100" />
-  <img src="images/homepage.jpg" width="100" />
-  <img src="images/EmpList.jpg" width="100" />
-    <img src="images/EmpDetails.jpg" width="100" />
-
-   <img src="images/EditAndDelete.jpg" width="100" />
-   <img src="images/Delete.jpg" width="100" />
-  <img src="images/AddEmployeeScreen.jpg" width="100" />
+ <img src="images/EMP.jpg" width="100" />
+ <img src="images/homepage.jpg" width="100" />
+ <img src="images/EmpList.jpg" width="100" />
+ <img src="images/EditAndDelete.jpg" width="100" />
+ <img src="images/Delete.jpg" width="100" />
+ <img src="images/AddEmployeeScreen.jpg" width="100" />
  <img src="images/Search.jpg" width="100" />
  
   
