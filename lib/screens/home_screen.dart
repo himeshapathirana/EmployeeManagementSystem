@@ -200,6 +200,7 @@ void _navigateToAddEmployee(BuildContext context) {
           basicSalary: 0,
           isActive: true,
         ),
+        onEmployeeAdded: () {},
       ),
     ),
   );

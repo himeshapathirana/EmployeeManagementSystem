@@ -54,8 +54,11 @@ class ApiService {
     );
 
     if (employeeResponse.statusCode != 200) {
-      throw Exception('Employee not found for update.');
+      throw Exception(
+          'Employee not found for update. Response: ${employeeResponse.body}');
     }
+
+    updatedEmployeeJson.remove('empNo');
 
     final response = await http.put(
       Uri.parse('$baseUrl/api/v1.0/Employee/${employee.empNo}'),
@@ -65,10 +68,14 @@ class ApiService {
       },
       body: json.encode(updatedEmployeeJson),
     );
+    print('Update Response: ${response.statusCode} - ${response.body}');
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to update employee: ${response.body}');
+      throw Exception(
+          'Failed to update employee: ${response.statusCode} - ${response.body}');
     }
+
+    print('Employee updated successfully');
   }
 
   // Delete employee

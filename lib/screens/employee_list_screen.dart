@@ -213,6 +213,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
         builder: (context) => AddEmployeeScreen(
           employee: employee,
           isEmpNoEditable: false,
+          onEmployeeAdded: () {},
         ),
       ),
     );
@@ -329,6 +330,9 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
                       basicSalary: 0,
                       isActive: true,
                     ),
+                    onEmployeeAdded: () {
+                      _refreshEmployees();
+                    },
                   ),
                 ),
               );

@@ -6,8 +6,12 @@ import 'package:empsystem/services/api_service.dart';
 class AddEmployeeScreen extends StatefulWidget {
   final Employee employee;
   final bool isEmpNoEditable;
-  const AddEmployeeScreen(
-      {required this.employee, this.isEmpNoEditable = true});
+  final VoidCallback onEmployeeAdded;
+  const AddEmployeeScreen({
+    required this.employee,
+    this.isEmpNoEditable = true,
+    required this.onEmployeeAdded,
+  });
 
   @override
   _AddEmployeeScreenState createState() => _AddEmployeeScreenState();
@@ -133,6 +137,7 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                         _buildInputDecoration('Employee ID', Icons.badge),
                     validator: (value) =>
                         value?.isEmpty ?? true ? 'Required field' : null,
+                    enabled: widget.isEmpNoEditable, // Allow edit based on flag
                   ),
                   SizedBox(height: 16),
                   TextFormField(
@@ -209,6 +214,9 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
                                   isActive: true,
                                 );
                                 await apiService.addEmployee(employee);
+
+                                widget.onEmployeeAdded();
+
                                 Navigator.pop(context);
                               } catch (e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
