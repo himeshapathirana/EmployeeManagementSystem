@@ -224,6 +224,15 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
 
                                 widget.onEmployeeAdded();
 
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content:
+                                        Text('Employee successfully added!'),
+                                    backgroundColor: Colors.green,
+                                    duration: Duration(seconds: 3),
+                                  ),
+                                );
+
                                 Navigator.pop(context);
                               } catch (e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
