@@ -60,7 +60,7 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: const Color.fromARGB(255, 22, 67, 104),
+              primary: const Color.fromARGB(255, 6, 25, 41),
               onPrimary: Colors.white,
               surface: Colors.white,
               onSurface: Colors.black,
@@ -78,7 +78,8 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
   InputDecoration _buildInputDecoration(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
-      prefixIcon: Icon(icon, color: const Color.fromARGB(255, 41, 90, 129)),
+      labelStyle: TextStyle(color: Color.fromARGB(255, 6, 25, 41)),
+      prefixIcon: Icon(icon, color: Color.fromARGB(255, 6, 25, 41)),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(color: Colors.grey.shade300),
@@ -89,8 +90,7 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide:
-            BorderSide(color: const Color.fromARGB(255, 9, 51, 85), width: 2),
+        borderSide: BorderSide(color: Color.fromARGB(255, 6, 25, 41), width: 2),
       ),
       filled: true,
       fillColor: Colors.grey.shade50,
@@ -102,9 +102,14 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Employee', style: TextStyle(color: Colors.white)),
-        backgroundColor: const Color.fromARGB(255, 49, 56, 61),
-        elevation: 0,
+        title: Text('Add Employee',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w600)),
+        backgroundColor: Color.fromARGB(255, 6, 25, 41),
+        elevation: 2,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -120,7 +125,7 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                      color: Color.fromARGB(255, 6, 25, 41),
                     ),
                   ),
                   SizedBox(height: 24),
@@ -138,7 +143,7 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
                         _buildInputDecoration('Employee ID', Icons.badge),
                     validator: (value) =>
                         value?.isEmpty ?? true ? 'Required field' : null,
-                    enabled: widget.isEmpNoEditable, // Allow edit based on flag
+                    enabled: widget.isEmpNoEditable,
                   ),
                   SizedBox(height: 16),
                   TextFormField(
@@ -233,11 +238,12 @@ class AddEmployeeScreenState extends State<AddEmployeeScreen> {
                             }
                           },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 41, 77, 107),
+                      backgroundColor: Color.fromARGB(255, 6, 25, 41),
                       padding: EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      elevation: 2,
                     ),
                     child: _isLoading
                         ? CircularProgressIndicator(color: Colors.white)

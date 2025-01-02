@@ -14,6 +14,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
   String searchText = '';
   final ApiService apiService = ApiService();
   late Future<List<Employee>> employees;
+  final Color primaryDarkColor = Color.fromARGB(255, 6, 25, 41);
 
   List<Employee> filteredEmployees = [];
 
@@ -37,7 +38,14 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
       builder: (context) => Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.surface,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              spreadRadius: 1,
+            ),
+          ],
         ),
         padding: EdgeInsets.fromLTRB(24, 16, 24, 24),
         height: MediaQuery.of(context).size.height * 0.85,
@@ -48,7 +56,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
               height: 4,
               margin: EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.grey[400],
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -90,8 +98,8 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: Colors.grey[200]!),
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: Colors.grey[300]!),
       ),
       child: Padding(
         padding: EdgeInsets.all(16),
@@ -153,7 +161,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
             child: Text(
               label,
               style: TextStyle(
-                color: Colors.grey[600],
+                color: Colors.grey[700],
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -162,7 +170,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
             child: Text(
               value,
               style: TextStyle(
-                color: Colors.grey[800],
+                color: Colors.grey[900],
               ),
             ),
           ),
@@ -179,9 +187,11 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
             icon: Icon(Icons.edit_outlined),
             label: Text('Edit Details'),
             style: ElevatedButton.styleFrom(
+              backgroundColor: primaryDarkColor,
+              foregroundColor: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
               ),
             ),
             onPressed: () => _editEmployee(employee),
@@ -193,11 +203,13 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
             icon: Icon(Icons.delete_outline),
             label: Text('Delete'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 226, 54, 42),
+              backgroundColor: Color.fromARGB(255, 226, 54, 42),
+              foregroundColor: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 16),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
               ),
+              elevation: 2,
             ),
             onPressed: () => _deleteEmployee(employee),
           ),
@@ -278,29 +290,37 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: isSearching
+            ? null
+            : IconButton(
+                icon: Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Navigator.pop(context),
+              ),
         title: !isSearching
             ? Text(
                 'Employee Directory',
                 style: TextStyle(
                   fontSize: 20,
+                  fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               )
             : TextField(
                 controller: searchController,
-                style: TextStyle(color: const Color.fromARGB(255, 10, 10, 10)),
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Search employees...',
-                  hintStyle:
-                      TextStyle(color: const Color.fromARGB(179, 80, 79, 79)),
+                  hintStyle: TextStyle(color: Colors.white70),
                   border: InputBorder.none,
                 ),
                 onChanged: (value) => _filterEmployees(value),
               ),
-        backgroundColor: const Color.fromARGB(141, 29, 60, 85),
+        backgroundColor: primaryDarkColor,
+        elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(isSearching ? Icons.close : Icons.search),
+            icon: Icon(isSearching ? Icons.close : Icons.search,
+                color: Colors.white),
             onPressed: () {
               setState(() {
                 isSearching = !isSearching;
@@ -312,7 +332,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add, color: Colors.white),
             onPressed: () async {
               final result = await Navigator.push(
                 context,
@@ -345,7 +365,8 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
         future: employees,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(color: primaryDarkColor));
           }
           if (snapshot.hasError) {
             return Center(
@@ -383,10 +404,10 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
                 elevation: 2,
                 margin: EdgeInsets.only(bottom: 12),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
                   onTap: () => _viewEmployeeDetails(employee),
                   child: Padding(
                     padding: EdgeInsets.all(16),
@@ -394,7 +415,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
                       children: [
                         CircleAvatar(
                           radius: 24,
-                          backgroundColor: Color.fromARGB(255, 18, 38, 73),
+                          backgroundColor: primaryDarkColor,
                           child: Text(
                             employee.empName[0].toUpperCase(),
                             style: TextStyle(
@@ -426,7 +447,7 @@ class _EmployeeListScreenState extends State<EmployeeListScreen> {
                             ],
                           ),
                         ),
-                        Icon(Icons.chevron_right),
+                        Icon(Icons.chevron_right, color: primaryDarkColor),
                       ],
                     ),
                   ),

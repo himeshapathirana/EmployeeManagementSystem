@@ -13,22 +13,22 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
+        elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 8),
             const Text(
               'Employee Management System',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 19,
-                letterSpacing: 0.5,
+                fontSize: 20,
+                letterSpacing: 0.8,
+                color: Colors.white,
               ),
             ),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 70, 104, 121),
+        backgroundColor: const Color.fromARGB(255, 6, 25, 41),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Theme.of(context).primaryColor.withValues(alpha: 0.05),
+              const Color.fromARGB(255, 6, 25, 41).withOpacity(0.1),
               Colors.white,
             ],
             stops: const [0.0, 0.3],
@@ -46,13 +46,13 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(
               horizontal: horizontalPadding,
-              vertical: screenSize.height * 0.03,
+              vertical: screenSize.height * 0.04,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildWelcomeSection(context),
-                SizedBox(height: screenSize.height * 0.04),
+                SizedBox(height: screenSize.height * 0.05),
                 _buildGridSection(context),
               ],
             ),
@@ -64,25 +64,25 @@ class HomePage extends StatelessWidget {
 
   Widget _buildWelcomeSection(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Welcome Back!',
             style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width * 0.06,
+              fontSize: MediaQuery.of(context).size.width * 0.07,
               fontWeight: FontWeight.bold,
               color: const Color.fromARGB(255, 6, 25, 41),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
           Text(
             'Manage your workforce efficiently',
             style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width * 0.035,
-              color: Colors.grey[700],
-              letterSpacing: 0.3,
+              fontSize: MediaQuery.of(context).size.width * 0.04,
+              color: Colors.grey[800],
+              letterSpacing: 0.5,
             ),
           ),
         ],
@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: options.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 16),
+      separatorBuilder: (context, index) => const SizedBox(height: 20),
       itemBuilder: (context, index) {
         return _buildMenuCard(context, options[index]);
       },
@@ -126,25 +126,25 @@ class HomePage extends StatelessWidget {
     final Size screenSize = MediaQuery.of(context).size;
 
     return Card(
-      elevation: 3,
-      shadowColor: option.color.withValues(alpha: 0.05),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      elevation: 4,
+      shadowColor: option.color.withOpacity(0.3),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: InkWell(
         onTap: option.onTap,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         child: Container(
-          height: screenSize.height * 0.12,
+          height: screenSize.height * 0.13,
           padding: EdgeInsets.symmetric(
-            horizontal: screenSize.width * 0.05,
-            vertical: screenSize.height * 0.02,
+            horizontal: screenSize.width * 0.06,
+            vertical: screenSize.height * 0.025,
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(20),
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                option.color.withValues(alpha: 0.05),
+                option.color.withOpacity(0.8),
                 option.color,
               ],
             ),
@@ -153,10 +153,10 @@ class HomePage extends StatelessWidget {
             children: [
               Icon(
                 option.icon,
-                size: screenSize.width * 0.08,
+                size: screenSize.width * 0.09,
                 color: Colors.white,
               ),
-              SizedBox(width: screenSize.width * 0.04),
+              SizedBox(width: screenSize.width * 0.05),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,18 +166,18 @@ class HomePage extends StatelessWidget {
                       option.title,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: screenSize.width * 0.045,
+                        fontSize: screenSize.width * 0.048,
                         fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5,
+                        letterSpacing: 0.8,
                       ),
                     ),
-                    SizedBox(height: screenSize.height * 0.008),
+                    SizedBox(height: screenSize.height * 0.01),
                     Text(
                       option.subtitle,
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.05),
-                        fontSize: screenSize.width * 0.03,
-                        letterSpacing: 0.2,
+                        color: Colors.white.withOpacity(0.9),
+                        fontSize: screenSize.width * 0.032,
+                        letterSpacing: 0.4,
                       ),
                     ),
                   ],
